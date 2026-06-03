@@ -155,82 +155,86 @@ export default function AddPropertyForm() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-8">
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-200">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-6 sm:p-8 rounded-t-2xl">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-2">🏠 Publish New Property</h2>
-          <p className="text-blue-100">Add your property details and images to showcase it to customers</p>
+    <div className="max-w-5xl mx-auto p-4 sm:p-8">
+      <div className="bg-white rounded-3xl shadow-2xl border border-gradient-to-r from-sky-100 to-blue-100 overflow-hidden animate-fade-in">
+        {/* Animated Header */}
+        <div className="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-700 p-8 sm:p-12 rounded-t-3xl relative overflow-hidden">
+          <div className="absolute top-0 -left-40 w-80 h-80 bg-white/10 rounded-full animate-blob"></div>
+          <div className="absolute -bottom-8 -right-40 w-80 h-80 bg-white/10 rounded-full animate-blob animation-delay-2000"></div>
+          
+          <div className="relative z-10">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white mb-3 animate-fade-in-up">🏠 Publish New Property</h2>
+            <p className="text-blue-100 text-lg animate-fade-in-up">Add details and images to showcase instantly</p>
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="p-6 sm:p-8">
+        <div className="p-8 sm:p-10">
           {status === 'success' && (
-            <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded-lg font-medium flex items-start gap-3">
-              <span className="text-2xl">✅</span>
+            <div className="mb-8 p-6 bg-gradient-to-r from-emerald-50 to-green-50 border-2 border-emerald-300 text-emerald-700 rounded-2xl font-medium flex items-start gap-4 animate-bounce-in shadow-lg">
+              <div className="text-4xl animate-bounce">✨</div>
               <div>
-                <p className="font-semibold">Property Published Successfully!</p>
-                <p className="text-sm text-green-600">Your property will appear on the website within seconds.</p>
+                <p className="font-extrabold text-lg">Published Successfully!</p>
+                <p className="text-sm text-emerald-600 mt-1">Property appears on website within seconds.</p>
               </div>
             </div>
           )}
 
           {status === 'error' && (
-            <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-lg font-medium flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <div className="mb-8 p-6 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-300 text-red-700 rounded-2xl font-medium flex items-start gap-4 animate-bounce-in">
+              <AlertCircle className="w-6 h-6" />
               <div>
-                <p className="font-semibold">Something went wrong</p>
-                <p className="text-sm">Please try again or contact support.</p>
+                <p className="font-extrabold">Error!</p>
+                <p className="text-sm text-red-600">Please try again.</p>
               </div>
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-8">
             {/* Basic Info */}
-            <div className="border-b pb-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span>📋</span> Basic Information
+            <div className="border-b-2 pb-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <span className="text-3xl">📋</span> Basic Information
               </h3>
               
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Property Title *</label>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Title *</label>
                   <input
                     type="text"
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
-                      errors.title ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                    className={`w-full px-5 py-4 border-2 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium ${
+                      errors.title ? 'border-red-500 bg-red-50' : 'border-gray-200 hover:border-sky-300'
                     }`}
-                    placeholder="e.g., Luxury 3BHK Villa with Garden"
+                    placeholder="e.g., Luxury 3BHK Villa"
                   />
-                  {errors.title && <p className="text-red-600 text-sm mt-1">{errors.title}</p>}
+                  {errors.title && <p className="text-red-600 text-sm mt-2">❌ {errors.title}</p>}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Location *</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Location *</label>
                     <input
                       type="text"
                       name="location"
                       value={formData.location}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
-                        errors.location ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                      className={`w-full px-5 py-4 border-2 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium ${
+                        errors.location ? 'border-red-500 bg-red-50' : 'border-gray-200 hover:border-sky-300'
                       }`}
-                      placeholder="e.g., Whitefield, Bangalore"
+                      placeholder="e.g., Bangalore"
                     />
-                    {errors.location && <p className="text-red-600 text-sm mt-1">{errors.location}</p>}
+                    {errors.location && <p className="text-red-600 text-sm mt-2">❌ {errors.location}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Property Type *</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Type *</label>
                     <select
                       name="type"
                       value={formData.type}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                      className="w-full px-5 py-4 border-2 border-gray-200 hover:border-sky-300 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium"
                     >
                       {PROPERTY_TYPES.map(type => (
                         <option key={type} value={type}>{type}</option>
@@ -239,29 +243,29 @@ export default function AddPropertyForm() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Price *</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Price *</label>
                     <input
                       type="text"
                       name="price"
                       value={formData.price}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
-                        errors.price ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                      className={`w-full px-5 py-4 border-2 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium ${
+                        errors.price ? 'border-red-500 bg-red-50' : 'border-gray-200 hover:border-sky-300'
                       }`}
                       placeholder="e.g., ₹2.4 Cr"
                     />
-                    {errors.price && <p className="text-red-600 text-sm mt-1">{errors.price}</p>}
+                    {errors.price && <p className="text-red-600 text-sm mt-2">❌ {errors.price}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Status *</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Status *</label>
                     <select
                       name="status"
                       value={formData.status}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                      className="w-full px-5 py-4 border-2 border-gray-200 hover:border-sky-300 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium"
                     >
                       {PROPERTY_STATUS.map(status => (
                         <option key={status} value={status}>{status}</option>
@@ -273,122 +277,125 @@ export default function AddPropertyForm() {
             </div>
 
             {/* Property Details */}
-            <div className="border-b pb-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span>🏢</span> Property Details
+            <div className="border-b-2 pb-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <span className="text-3xl">🏢</span> Property Details
               </h3>
 
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-1">Description *</label>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Description *</label>
                   <textarea
                     name="description"
                     value={formData.description}
                     onChange={handleChange}
                     rows="4"
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none ${
-                      errors.description ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                    className={`w-full px-5 py-4 border-2 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all resize-none text-base font-medium ${
+                      errors.description ? 'border-red-500 bg-red-50' : 'border-gray-200 hover:border-sky-300'
                     }`}
-                    placeholder="Describe your property features, location advantages, amenities, etc..."
+                    placeholder="Describe your property..."
                   />
-                  {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
+                  {errors.description && <p className="text-red-600 text-sm mt-2">❌ {errors.description}</p>}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Area (sq ft)</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Area (sq ft)</label>
                     <input
                       type="text"
                       name="area"
                       value={formData.area}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
-                      placeholder="e.g., 3,200"
+                      className="w-full px-5 py-4 border-2 border-gray-200 hover:border-sky-300 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium"
+                      placeholder="e.g., 3200"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Bedrooms</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Bedrooms</label>
                     <input
                       type="number"
                       name="bedrooms"
                       value={formData.bedrooms}
                       onChange={handleChange}
                       min="0"
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
-                        errors.bedrooms ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                      className={`w-full px-5 py-4 border-2 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium ${
+                        errors.bedrooms ? 'border-red-500 bg-red-50' : 'border-gray-200 hover:border-sky-300'
                       }`}
                       placeholder="e.g., 4"
                     />
-                    {errors.bedrooms && <p className="text-red-600 text-sm mt-1">{errors.bedrooms}</p>}
+                    {errors.bedrooms && <p className="text-red-600 text-sm mt-2">❌ {errors.bedrooms}</p>}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Bathrooms</label>
+                    <label className="block text-sm font-bold text-gray-700 mb-2">Bathrooms</label>
                     <input
                       type="number"
                       name="bathrooms"
                       value={formData.bathrooms}
                       onChange={handleChange}
                       min="0"
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition ${
-                        errors.bathrooms ? 'border-red-500 bg-red-50' : 'border-gray-300'
+                      className={`w-full px-5 py-4 border-2 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium ${
+                        errors.bathrooms ? 'border-red-500 bg-red-50' : 'border-gray-200 hover:border-sky-300'
                       }`}
                       placeholder="e.g., 3"
                     />
-                    {errors.bathrooms && <p className="text-red-600 text-sm mt-1">{errors.bathrooms}</p>}
+                    {errors.bathrooms && <p className="text-red-600 text-sm mt-2">❌ {errors.bathrooms}</p>}
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Features */}
-            <div className="border-b pb-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span>⭐</span> Features & Amenities
+            <div className="border-b-2 pb-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <span className="text-3xl">⭐</span> Amenities
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                 {FEATURES.map(feature => (
-                  <label key={feature} className="flex items-center gap-2 p-3 border border-gray-200 rounded-lg hover:bg-blue-50 cursor-pointer transition">
+                  <label 
+                    key={feature} 
+                    className="flex items-center gap-3 p-4 border-2 border-gray-200 rounded-xl hover:border-sky-400 hover:bg-sky-50 cursor-pointer transition-all duration-300 transform hover:scale-105"
+                  >
                     <input
                       type="checkbox"
                       checked={formData.features.includes(feature)}
                       onChange={() => handleFeatureToggle(feature)}
-                      className="w-4 h-4 text-blue-600 rounded"
+                      className="w-5 h-5 text-sky-600 rounded"
                     />
-                    <span className="text-sm font-medium text-gray-700">{feature}</span>
+                    <span className="text-sm font-semibold text-gray-700">{feature}</span>
                   </label>
                 ))}
               </div>
             </div>
 
             {/* Image Upload */}
-            <div className="border-b pb-6">
-              <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span>📸</span> Property Images
+            <div className="pb-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+                <span className="text-3xl">📸</span> Images
               </h3>
 
-              {/* Image Preview */}
               {imagePreview && (
-                <div className="mb-6 relative">
-                  <img src={imagePreview} alt="Preview" className="w-full h-64 object-cover rounded-lg shadow-md" />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setImagePreview(null);
-                      setImageFile(null);
-                      if (fileInputRef.current) fileInputRef.current.value = '';
-                    }}
-                    className="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white p-2 rounded-lg transition"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
+                <div className="mb-8 relative animate-bounce-in">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-sky-300">
+                    <img src={imagePreview} alt="Preview" className="w-full h-72 object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setImagePreview(null);
+                        setImageFile(null);
+                        if (fileInputRef.current) fileInputRef.current.value = '';
+                      }}
+                      className="absolute top-4 right-4 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full transition-all hover:scale-110"
+                    >
+                      <X className="w-6 h-6" />
+                    </button>
+                  </div>
                 </div>
               )}
 
-              {/* Upload Area */}
-              <div className="space-y-4">
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 hover:bg-blue-50 transition cursor-pointer">
+              <div className="space-y-5">
+                <div className="border-4 border-dashed border-sky-300 rounded-2xl p-10 text-center hover:border-sky-500 hover:bg-sky-50 transition-all cursor-pointer">
                   <input
                     type="file"
                     accept="image/*"
@@ -397,57 +404,57 @@ export default function AddPropertyForm() {
                     className="hidden"
                     id="file-upload"
                   />
-                  <label htmlFor="file-upload" className="flex flex-col items-center gap-3 cursor-pointer">
-                    <Upload className="w-12 h-12 text-gray-400" />
+                  <label htmlFor="file-upload" className="flex flex-col items-center gap-4 cursor-pointer">
+                    <Upload className="w-16 h-16 text-sky-400 animate-float" />
                     <div>
-                      <p className="font-semibold text-gray-800">Upload Property Image</p>
-                      <p className="text-sm text-gray-600">Or drag and drop your image here</p>
-                      <p className="text-xs text-gray-500 mt-2">Maximum file size: 5MB (JPG, PNG, GIF)</p>
+                      <p className="font-bold text-gray-800 text-lg">Upload Image</p>
+                      <p className="text-gray-600 mt-1">Drag & drop or click</p>
+                      <p className="text-xs text-gray-500 mt-3">Max 5MB (JPG, PNG, GIF)</p>
                     </div>
                   </label>
                 </div>
 
-                <div className="flex items-center gap-3 text-gray-400">
-                  <div className="flex-1 border-t border-gray-300"></div>
-                  <span className="text-sm font-medium">OR</span>
-                  <div className="flex-1 border-t border-gray-300"></div>
+                <div className="flex items-center gap-4">
+                  <div className="flex-1 h-0.5 bg-gradient-to-r from-gray-300 to-transparent"></div>
+                  <span className="text-gray-600 font-bold px-3">OR</span>
+                  <div className="flex-1 h-0.5 bg-gradient-to-l from-gray-300 to-transparent"></div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Image URL</label>
+                  <label className="block text-sm font-bold text-gray-700 mb-2">Image URL</label>
                   <input
                     type="url"
                     name="imageUrl"
                     value={formData.imageUrl}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+                    className="w-full px-5 py-4 border-2 border-gray-200 hover:border-sky-300 rounded-xl focus:ring-4 focus:ring-sky-300 outline-none transition-all text-base font-medium"
                     placeholder="https://example.com/image.jpg"
                   />
                 </div>
               </div>
 
-              {errors.image && <p className="text-red-600 text-sm mt-2">{errors.image}</p>}
+              {errors.image && <p className="text-red-600 text-sm mt-4 font-semibold">❌ {errors.image}</p>}
             </div>
 
             {/* Submit Button */}
-            <div className="flex gap-3">
+            <div className="flex gap-4 pt-4">
               <button
                 type="submit"
                 disabled={status === 'submitting'}
-                className={`flex-1 py-4 px-6 rounded-lg font-bold text-lg transition-all flex items-center justify-center gap-2 ${
+                className={`flex-1 py-5 px-8 rounded-2xl font-bold text-lg transition-all duration-300 flex items-center justify-center gap-3 transform hover:scale-105 active:scale-95 ${
                   status === 'submitting'
                     ? 'bg-gray-400 cursor-not-allowed text-white'
-                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl'
+                    : 'bg-gradient-to-r from-sky-600 to-blue-700 hover:from-sky-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl'
                 }`}
               >
                 {status === 'submitting' ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
                     Publishing...
                   </>
                 ) : (
                   <>
-                    <span>🚀</span> Publish Property Now
+                    <span>🚀</span> Publish Now
                   </>
                 )}
               </button>

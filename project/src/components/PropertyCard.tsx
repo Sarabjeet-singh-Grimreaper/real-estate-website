@@ -31,69 +31,81 @@ export default function PropertyCard({ property, onView }: Props) {
 
   return (
     <div
-      className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer border border-slate-100 flex flex-col"
+      className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer border border-slate-100 flex flex-col hover:border-sky-200 transform hover:scale-105"
     >
-      {/* Image */}
-      <div className="relative overflow-hidden h-52" onClick={() => onView(property)}>
+      {/* Image container with enhanced effects */}
+      <div className="relative overflow-hidden h-56 bg-gradient-to-br from-slate-100 to-slate-200" onClick={() => onView(property)}>
         <img
           src={property.images[0]}
           alt={property.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700 ease-out"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
+        
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent group-hover:from-sky-900/40 transition-all duration-500" />
 
-        {/* Status badge */}
-        <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full ${statusColors[property.status]}`}>
+        {/* Status badge with animation */}
+        <span className={`absolute top-4 left-4 text-xs font-bold px-3 py-1.5 rounded-full ${statusColors[property.status]} shadow-lg transform group-hover:scale-110 transition-transform duration-300`}>
           {property.status}
         </span>
 
-        {/* Image count */}
+        {/* Image count with hover effect */}
         {property.images.length > 1 && (
-          <span className="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
-            +{property.images.length - 1} photos
+          <span className="absolute top-4 right-4 bg-black/60 hover:bg-black/80 text-white text-xs font-semibold px-3 py-1.5 rounded-full backdrop-blur-sm transition-all duration-300">
+            📸 +{property.images.length - 1}
           </span>
         )}
 
-        {/* Price overlay */}
-        <div className="absolute bottom-3 left-3">
-          <span className="text-white font-bold text-xl drop-shadow-lg">{property.price}</span>
+        {/* Animated price tag */}
+        <div className="absolute bottom-4 left-4 transform group-hover:scale-110 transition-transform duration-300">
+          <span className="text-white font-extrabold text-2xl drop-shadow-xl">{property.price}</span>
+        </div>
+
+        {/* Animated view button on hover */}
+        <div className="absolute inset-0 flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="bg-gradient-to-r from-sky-500 to-blue-600 text-white px-6 py-2 rounded-full font-semibold text-sm shadow-lg flex items-center gap-2 hover:shadow-2xl transform scale-90 group-hover:scale-100 transition-all">
+            View Details <ArrowRight className="w-4 h-4" />
+          </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="p-4 flex flex-col flex-1" onClick={() => onView(property)}>
-        <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 className="font-bold text-slate-800 text-base leading-snug line-clamp-2 group-hover:text-sky-700 transition-colors">
+      {/* Content with animations */}
+      <div className="p-5 flex flex-col flex-1" onClick={() => onView(property)}>
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h3 className="font-bold text-slate-800 text-base leading-snug line-clamp-2 group-hover:text-sky-700 transition-colors duration-300">
             {property.title}
           </h3>
-          <span className={`shrink-0 text-xs font-medium px-2 py-0.5 rounded-md border ${typeColors[property.type]}`}>
+          <span className={`shrink-0 text-xs font-bold px-2.5 py-1 rounded-lg border transform group-hover:scale-110 transition-transform duration-300 ${typeColors[property.type]}`}>
             {property.type}
           </span>
         </div>
 
-        <div className="flex items-center gap-1 text-slate-500 text-sm mb-3">
-          <MapPin className="w-3.5 h-3.5 shrink-0" />
-          <span className="truncate">{property.location}</span>
+        <div className="flex items-center gap-1.5 text-slate-500 text-sm mb-3 group-hover:text-sky-600 transition-colors duration-300">
+          <MapPin className="w-4 h-4 shrink-0" />
+          <span className="truncate font-medium">{property.location}</span>
         </div>
 
-        <p className="text-slate-500 text-sm line-clamp-2 mb-3 leading-relaxed">
+        <p className="text-slate-600 text-sm line-clamp-2 mb-4 leading-relaxed group-hover:text-slate-700 transition-colors duration-300">
           {property.description}
         </p>
 
-        <div className="flex items-center gap-3 text-slate-600 text-sm mt-auto pt-2 border-t border-slate-100">
-          <span className="flex items-center gap-1">
-            <Maximize2 className="w-3.5 h-3.5 text-slate-400" />
-            {property.area}
-          </span>
+        {/* Specs with animations */}
+        <div className="flex items-center gap-3 text-slate-600 text-xs mt-auto pt-4 border-t border-slate-100 group-hover:border-sky-100 transition-colors duration-300">
+          {property.area && (
+            <span className="flex items-center gap-1 group-hover:text-sky-700 transition-colors duration-300">
+              <Maximize2 className="w-4 h-4 text-slate-400" />
+              {property.area}
+            </span>
+          )}
           {property.bedrooms && (
-            <span className="flex items-center gap-1">
-              <BedDouble className="w-3.5 h-3.5 text-slate-400" />
+            <span className="flex items-center gap-1 group-hover:text-sky-700 transition-colors duration-300">
+              <BedDouble className="w-4 h-4 text-slate-400" />
               {property.bedrooms} Beds
             </span>
           )}
           {property.bathrooms && (
-            <span className="flex items-center gap-1">
-              <Bath className="w-3.5 h-3.5 text-slate-400" />
+            <span className="flex items-center gap-1 group-hover:text-sky-700 transition-colors duration-300">
+              <Bath className="w-4 h-4 text-slate-400" />
               {property.bathrooms} Baths
             </span>
           )}
